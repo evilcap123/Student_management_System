@@ -23,7 +23,7 @@ public class Student{
         this.name = name;
         this.email = email;
         this.course = course;
-        this.double = double;
+        this.gpa = gpa;
     }
 //   ########## Constructor's ends ##########
 
