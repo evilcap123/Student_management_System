@@ -1,9 +1,9 @@
 package dao;
 
-import model.Student;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Student;
 
 
 public class StudentDao{
@@ -63,6 +63,25 @@ public class StudentDao{
             }
             catch(SQLException e){
                 System.err.println("Error deleting the student: " + e.getMessage());
+                return false;
+            }
+    }
+
+    public boolean updateStudent(Student student){
+        String query = "UPDATE students SET name = ? , enail = ?. course = ?, gpa = ?, WHERE id = ?";
+        try(Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement msg = conn.prepareStatement(query)){
+
+                msg.setString(1 , student.getName());
+                msg.setString(2 , student.getEmail());
+                msg.setString(3 , student.getCourse());
+                msg.setDouble(4 , student.getGpa());
+                
+
+                return msg.executeUpdate() > 0;
+            }
+            catch(SQLException e){
+                System.err.println("Error updateing the studetn: " + e);
                 return false;
             }
     }

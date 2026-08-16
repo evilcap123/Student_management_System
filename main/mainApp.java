@@ -20,6 +20,7 @@ public class mainApp{
             System.out.println("1. Add Student");
             System.out.println("2. View All Student");
             System.out.println("3. Delete Student");
+            System.out.println("4. Update Student");
             System.out.println("0. EXIT");
             System.out.println("Select ANY option: ");
             int choice = sc.nextInt();
@@ -71,6 +72,26 @@ public class mainApp{
                             }
                             else{
                                 System.out.println("Record not found or error occured..");
+                            }
+                            break;
+                        
+                        case 4:
+                            System.out.println("Enter name: ");
+                            String Updated_name = sc.nextLine();
+                            
+                            System.out.println("Enter Email: ");
+                            String Updated_email = sc.nextLine();
+                            
+                            System.out.println("Enter course: ");
+                            String Updated_course = sc.nextLine();
+
+                            System.out.println("Enter gpa: ");
+                            double Updated_gpa = sc.nextDouble();
+
+                            if(dao.addStudent(new Student(Updated_name , Updated_email , Updated_course , Updated_gpa))) {
+                                System.out.println("Student Added Succesfully!");
+                            } else{
+                                System.out.println("Failed To add Student");
                             }
                             break;
 
