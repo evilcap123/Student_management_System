@@ -76,22 +76,65 @@ public class mainApp{
                             break;
                         
                         case 4:
-                            System.out.println("Enter name: ");
-                            String Updated_name = sc.nextLine();
-                            
-                            System.out.println("Enter Email: ");
-                            String Updated_email = sc.nextLine();
-                            
-                            System.out.println("Enter course: ");
-                            String Updated_course = sc.nextLine();
+                            System.out.println("Enter Student ID to update: ");
+                            int updateId = sc.nextInt();
+                            sc.nextLine();
 
-                            System.out.println("Enter gpa: ");
-                            double Updated_gpa = sc.nextDouble();
+                            Student selectedStudent = null;
 
-                            if(dao.addStudent(new Student(Updated_name , Updated_email , Updated_course , Updated_gpa))) {
-                                System.out.println("Student Added Succesfully!");
+                            List<Student> allStudent = dao.getAllStudent();
+
+                            for(Student s : allStudent){
+                                if(s.getId() == updateId){
+                                    selectedStudent = s;
+                                    break;
+                                }
+                            }
+
+                            if(selectedStudent == null){
+                                System.out.println("Student not found duh!!!");
+                                break;
+                            }
+
+                            System.out.println("Current student: " + selectedStudent);
+
+                            System.out.println("Enter new name (press enter to keep current) : ");
+                            String newName = sc.nextLine();
+                            
+                            if(!newName.trim().isEmpty()){
+                                selectedStudent.setName(newName);
+                            }
+
+
+                            System.out.println("Enter new Email (press enter to keep current) : ");
+                            String newEmail = sc.nextLine();
+
+                            if(!newEmail.trim().isEmpty()){
+                                selectedStudent.setEmail(newEmail);
+                            }
+
+                            System.out.println("Enter new course (press enter to keep current) : ");
+                            String newCourse = sc.nextLine();
+
+                            if(!newCourse.trim().isEmpty()){
+                                selectedStudent.setCourse(newCourse);
+                            }
+
+                            System.out.println("Enter new gpa (press enter to keep current) : ");
+                            String newGpa = sc.nextLine();
+
+                            if(!newGpa.trim().isEmpty()){
+                                try {
+                                    selectedStudent.setGpa(Double.parseDouble(newGpa));
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Invalid GPA . keeing current one");
+                                }
+                            }
+
+                            if(dao.updateStudent(selectedStudent)){
+                                System.out.println("Student updated successfully!");
                             } else{
-                                System.out.println("Failed To add Student");
+                                System.out.println("Failed to update stduetn");
                             }
                             break;
 
