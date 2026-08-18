@@ -4,14 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
 import model.User;
 
 public class UserDao {
     
     public boolean registerUser(User user){
-        String query = "INSERT users (generated_id , name , email , detailword_hash , role) VALUES(?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users (generated_id , name , email , password_hash , role) VALUES(?, ?, ?, ?, ?)";
 
         try(Connection conn = DatabaseConnection.getConnection();
             PreparedStatement msg = conn.prepareStatement(query)){

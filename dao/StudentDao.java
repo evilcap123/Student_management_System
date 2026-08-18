@@ -68,21 +68,21 @@ public class StudentDao{
     }
 
     public boolean updateStudent(Student student){
-        String query = "UPDATE students SET name = ? , enail = ?, course = ?, gpa = ? WHERE id = ?";
+        String query = "UPDATE students SET name = ?, email = ?, course = ?, gpa = ? WHERE id = ?";
         try(Connection conn = DatabaseConnection.getConnection();
             PreparedStatement msg = conn.prepareStatement(query)){
 
-                msg.setString(1 , student.getName());
-                msg.setString(2 , student.getEmail());
-                msg.setString(3 , student.getCourse());
-                msg.setDouble(4 , student.getGpa());
-                msg.setInt(5 , student.getId());
+            msg.setString(1, student.getName());
+            msg.setString(2, student.getEmail());
+            msg.setString(3, student.getCourse());
+            msg.setDouble(4, student.getGpa());
+            msg.setInt(5, student.getId());
 
-                return msg.executeUpdate() > 0;
-            }
-            catch(SQLException e){
-                System.err.println("Error updateing the studetn: " + e);
-                return false;
-            }
+            return msg.executeUpdate() > 0;
+    }
+        catch(SQLException e){
+            System.err.println("Error updating the student: " + e.getMessage());
+            return false;
+        }
     }
 }

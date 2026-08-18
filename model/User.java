@@ -10,7 +10,7 @@ public class User {
 
     public User(){}
 
-    public User(String generatedId , String name , String email , String passwordHash , String role){
+    public User(String generatedId, String name, String email, String passwordHash, String role){
         this.generatedId = generatedId;
         this.name = name;
         this.email = email;
@@ -59,5 +59,16 @@ public class User {
     }
     public void setRole(String role){
         this.role = role;
+    }
+
+    @Override
+    public String toString(){
+        return "User{"+
+                "id=" + id +
+                ", generatedId='" + generatedId + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
