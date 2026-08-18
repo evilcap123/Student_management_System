@@ -131,8 +131,10 @@ public class mainApp{
                     break;
                 case 3:
                     deleteStudent();
+                    break;
                 case 4:
                     updateStudent();
+                    break;
                 case 5:
                     logout();
                     break;
