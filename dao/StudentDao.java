@@ -8,6 +8,7 @@ import model.Student;
 
 public class StudentDao{
 
+    // Adds student by inserting values in database
     public boolean addStudent(Student student){
         String query = "INSERT INTO students (name, email, course, gpa) VALUES(?, ?, ?, ?)";
         try(Connection conn = DatabaseConnection.getConnection();
@@ -26,6 +27,7 @@ public class StudentDao{
             }
     }
 
+    // Uses result set to get info about students row by row
     public List<Student> getAllStudent() {
         List<Student> list = new ArrayList<>();
 
@@ -52,7 +54,8 @@ public class StudentDao{
              return list;
 
     }
-
+    
+    // Uses execute update to delete student from database
     public boolean deleteStudent(int id){
         String query = "DELETE FROM students WHERE id = ?";
         try(Connection conn = DatabaseConnection.getConnection();
@@ -67,6 +70,7 @@ public class StudentDao{
             }
     }
 
+    //Get id from userr and updates the info of student where id get matched
     public boolean updateStudent(Student student){
         String query = "UPDATE students SET name = ?, email = ?, course = ?, gpa = ? WHERE id = ?";
         try(Connection conn = DatabaseConnection.getConnection();

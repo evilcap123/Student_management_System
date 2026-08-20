@@ -10,6 +10,7 @@ public class DatabaseConnection{
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
+    // Attempts to connect to my database:
     public static Connection getConnection()throws SQLException {
         return DriverManager.getConnection(URL , USER , PASSWORD);
     }

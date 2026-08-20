@@ -8,6 +8,7 @@ import model.User;
 
 public class UserDao {
     
+    //This func registers and user into the System and generates an id for the perticular student automatically ex ("STU - xxxxxxx" miliseconds format)
     public boolean registerUser(User user){
         String query = "INSERT INTO users (generated_id , name , email , password_hash , role) VALUES(?, ?, ?, ?, ?)";
 
@@ -27,6 +28,8 @@ public class UserDao {
                 return false;
             }
     }
+
+    // This func uses prebuilt method or keyword Called ResultSet in order to traverse rows of the tables and returns the user as soon as the id gets matched
 
     public User findByGeneratedId(String generatedId){
         String query = "SELECT * FROM users WHERE generated_id = ?";
